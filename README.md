@@ -15,7 +15,7 @@ Mappa itinerario di viaggio in Corsica, creata con Streamlit e Folium.
    ```
 
 3. **Apri nel browser**:  
-   L'app sarà disponibile all'indirizzo: `http://localhost:8501`
+   L'app sarà disponibile all'indirizzo: `http://192.168.1.55:8501`
 
 ## 🌍 Funzionalità  
 - ✅ Tappe principali con date e attività  
