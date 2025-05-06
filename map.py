@@ -87,7 +87,7 @@ for loc in localita_secondarie:
     folium.Marker(
         location=loc["coords"],
         icon=folium.DivIcon(html=icon_html, icon_size=(20, 20)),
-        popup=f"<b>{loc['luogo']}</b><br>Tipo: {loc['tipo']}",
+        popup=f"<b>{loc['luogo']}",
     ).add_to(mappa)
 
 # 6. Percorsi e resto del codice (NESSUN CAMBIAMENTO)
