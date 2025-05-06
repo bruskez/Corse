@@ -62,33 +62,32 @@ for tappa in tappe_principali:
     ).add_to(cluster)
 
 for loc in localita_secondarie:
-    # Assegna icone in base al tipo
     if loc['tipo'] == 'spiaggia':
-        icon_html = '<i class="fa fa-water" style="color: white; font-size: 12px"></i>'
+        icon_class = "fa-water"
     elif loc['tipo'] == 'borgo':
-        icon_html = '<i class="fa fa-home" style="color: white; font-size: 12px"></i>'
-    else:  # natura
-        icon_html = '<i class="fa fa-tree" style="color: white; font-size: 12px"></i>'
+        icon_class = "fa-home"
+    else:
+        icon_class = "fa-tree"
 
-    # Crea un cerchio colorato con icona al centro
-    folium.CircleMarker(
-        location=loc["coords"],
-        radius=10,  # Dimensione del cerchio
-        color=loc["colore"],
-        fill=True,
-        fill_color=loc["colore"],
-        fill_opacity=1,
-        popup=f"<b>{loc['luogo']}</b><br>Tipo: {loc['tipo']}",
-    ).add_to(mappa)
+    # Crea un'icona HTML con cerchio e icona FontAwesome
+    icon_html = f"""
+    <div style="
+        background-color: {loc['colore']};
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    ">
+        <i class="fa {icon_class}" style="color: white; font-size: 12px"></i>
+    </div>
+    """
 
-    # Aggiungi l'icona come overlay (usando DivIcon)
     folium.Marker(
         location=loc["coords"],
-        icon=folium.DivIcon(
-            html=f'<div style="display: flex; justify-content: center; align-items: center;">{icon_html}</div>',
-            icon_size=(12, 12),
-        ),
-        z_index_offset=1000  # Assicura che l'icona sia sopra il cerchio
+        icon=folium.DivIcon(html=icon_html, icon_size=(20, 20)),
+        popup=f"<b>{loc['luogo']}</b><br>Tipo: {loc['tipo']}",
     ).add_to(mappa)
 
 # 6. Percorsi e resto del codice (NESSUN CAMBIAMENTO)
